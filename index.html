@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>Global-ssh by nthiep</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>Global-ssh</h1>
+        <h2>global-ssh project</h2>
+        <a href="https://github.com/nthiep/global-ssh" class="button"><small>View project on</small> GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h3>
+<a id="welcome-to-global-ssh-developer-pages" class="anchor" href="#welcome-to-global-ssh-developer-pages" aria-hidden="true"><span class="octicon octicon-link"></span></a>Welcome to Global-SSH developer Pages.</h3>
+
+<p>Global-SSH, application help connect SSH to computer via p2p network, use hole punching create TCP connect and use for SSH:</p>
+
+<pre><code>$ cd global-ssh/client
+$ python cl_main.py
+to show all peer client:
+$ -l
+to connect to peer:
+$ -c {number of peer}
+</code></pre>
+
+<h3>
+<a id="about-project" class="anchor" href="#about-project" aria-hidden="true"><span class="octicon octicon-link"></span></a>About project</h3>
+
+<p>This project will build a application tool to connect linux computer behind NAT use hole punching and multi hole punching for symmetric NAT.</p>
+
+<h3>
+<a id="about-hole-punching-with-clone-nat" class="anchor" href="#about-hole-punching-with-clone-nat" aria-hidden="true"><span class="octicon octicon-link"></span></a>About hole punching with clone NAT</h3>
+
+<p><img src="http://www.brynosaurus.com/pub/net/p2pnat/img6.png" alt="hole punching"></p>
+
+<p>Hole punching assumes that the two clients, A and B, already have active TCP sessions with a rendezvous server S. When a client registers with S, the server records two endpoints for that client: the (IP address, port) pair that the client believes itself to be using to talk with S, and the (IP address, port) pair that the server observes the client to be using to talk with it. We refer to the first pair as the client's private endpoint and the second as the client's public endpoint. The server might obtain the client's private endpoint from the client itself in a field in the body of the client's registration message, and obtain the client's public endpoint from the source IP address and source port fields in the IP and TCP headers of that registration message. If the client is not behind a NAT, then its private and public endpoints should be identical.</p>
+
+<p>view more at <a href="http://www.brynosaurus.com/pub/net/p2pnat/">http://www.brynosaurus.com/pub/net/p2pnat/</a></p>
+
+<h3>
+<a id="symmetric-nat" class="anchor" href="#symmetric-nat" aria-hidden="true"><span class="octicon octicon-link"></span></a>Symmetric NAT</h3>
+
+<p>In a symmetric NAT, any request from an internal IP address and a port number to some destination IP address and
+port number is mapped to a unique external IP address and a unique port number. If the same host sends a packet from the same source address and the same port number but to a different destination, a different mapping is used. Only the external host that receives a packet from an internal host can send a TCP packet back to the internal host.</p>
+
+<h3>
+<a id="multi-hole-punching" class="anchor" href="#multi-hole-punching" aria-hidden="true"><span class="octicon octicon-link"></span></a>Multi hole punching</h3>
+
+<p><img src="http://i.imgur.com/mxOqb95.png" alt="multi hole punching"></p>
+
+<p>the client is known as an echo client and the server is known as an echo server because there are a series of packet exchanges between them. An echo client communicates with two servers S1 and S2. S1 and S2 record the IP address and port number of the echo client, and these are then translated by NAT a. The following are the steps of the method:</p>
+
+<p>F1: The echo client communicates with S1. Then, S1 analyzes the port number mapped by NAT a.</p>
+
+<p>F2: S1 conveys the port number to the echo client.</p>
+
+<p>F3: The echo client sends a packet to S2. It includes information obtained on the port number of NAT a when
+the echo client communicated with S1. Then, S2 analyzes the port number of NAT a and records it. Furthermore, S2 also records the information obtained on the port number of NAT a when the echo client communicated with S1 at step F1.</p>
+
+<p>F4: The echo server communicates with S1. Then, S1 analyzes the port number mapped by NAT b.</p>
+
+<p>F5: S1 conveys the port number to the echo server.</p>
+
+<p>F6: The echo server sends a packet to S2. The packet includes the port number information of NAT b obtained
+from the communication of the echo server with S1 at step F4. Then, S2 analyzes the port number of NAT
+b and records it. Furthermore, S2 records the port number information of NAT b obtained when the echo server communicated with S1 at step F4.</p>
+
+<p>F7: Based on the two types of information communicated in phases I and II, namely the communications of NAT
+a with S1 and S2, we can predict a suitable port number for hole punching. We can also determine the
+punching mode. S2 sends the information containing the predicted port number and the punching mode to
+the echo server.</p>
+
+<p>F8: Based on this information, the echo server sends a large number of packets. These packets have a fixed destination port and a low TTL value. The echo server binds the port. The packets are then sent to the echo client.</p>
+
+<p>F9: Using the two kinds of information obtained in phases I and II, namely, the communications of NAT b with S1
+and S2, we can predict a suitable port number for the hole punching. S2 sends the information that contains
+the predicted port number and the punching mode to the echo client in a manner similar to that of step F7.</p>
+
+<p>F10: On the basis of the information obtained in step F9,the echo client sends many packets to the echo server.
+These packets have a fixed destination port. The echo client binds the port. After sending all the packets,
+the echo client switches to the receiving mode.</p>
+
+<p>F11: The echo server replies to the echo client. It establishes a P2P connection between the echo client and the echo server at this stage.</p>
+
+<p>View more at A New Method for Symmetric NAT Traversal in UDP and TCP.</p>
+
+<p><a href="http://www.goto.info.waseda.ac.jp/%7Ewei/file/wei-apan-v10.pdf">http://www.goto.info.waseda.ac.jp/~wei/file/wei-apan-v10.pdf</a></p>
+
+<hr>
+
+<h3>
+<a id="authors" class="anchor" href="#authors" aria-hidden="true"><span class="octicon octicon-link"></span></a>Authors</h3>
+
+<p>My team are Hiep and Dinh at IT in Industrial University of Ho Chi Minh City - IUH.</p>
+
+<h3>
+<a id="support-or-contact" class="anchor" href="#support-or-contact" aria-hidden="true"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
+
+<p>Having trouble with app? Check out the documentation at:</p>
+
+<p><a href="http://github.com/nthiep/global-ssh">http://github.com/nthiep/global-ssh</a></p>
+
+<p>or contact <a href="mailto:hiep.iuh@gmail.com">hiep.iuh@gmail.com</a> and we’ll help you sort it out.</p>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/nthiep/global-ssh/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/nthiep/global-ssh/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/nthiep/global-ssh"></a> is maintained by <a href="https://github.com/nthiep">nthiep</a>.</p>
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+  
+  </body>
+</html>
