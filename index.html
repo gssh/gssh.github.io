@@ -1,110 +1,94 @@
+<!--A Design by W3layouts 
+Author: W3layout
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+<head>
+<title>	Global SSH Project </title>
+<link href="stylesheets/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="javascripts/jquery.min.js"></script>
+<!-- Custom Theme files -->
+<!--theme-style-->
+<link href="stylesheets/index.css" rel="stylesheet" type="text/css" media="all" />	
+<!--//theme-style-->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="global ssh" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!--fonts-->
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700' rel='stylesheet' type='text/css'>
+<!--//fonts-->
+	<script type="text/javascript">
+		jQuery(document).ready(function($) {
+			$(".scroll").click(function(event){		
+				event.preventDefault();
+				$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+			});
+		});
+		</script>
 
-    <link rel="shortcut icon" href="favicon.png">
+</head>
+<body>
+<!--header-->
+	<div class="header" id="home">
+		<div class="container">	
+			<div class="logo">
+				<h1><a href="index.html"><img src="images/logo.png" alt=""></a></h1>
+			</div>
+			<div class="header-bottom">
+				<div class="top-nav">
+					<span class="menu"> </span>
+					<ul>
+						<li><a href="/" class="scroll">Home</a></li>
+						<li><a href="mailto:hiep.iuh@gmail.com?Subject=gsh-contacts">contact</a></li>
+			            <li><a href="about.html">About</a></li>
+			            <li><a href="https://gssh.herokuapp.com/login">Login</a></li>
+			            <li><a href="https://gssh.herokuapp.com/register">register</a></li>
+					</ul>
+					<!--script-->
+				<script>
+					$("span.menu").click(function(){
+						$(".top-nav ul").slideToggle(500, function(){
+						});
+					});
+			</script>
+				</div>
+		</div>
+		<div class="clearfix"> </div>
+		</div>
+	</div>
+	<!---->
+	
+	<div class="container">		
+		<div class="banner">
+			<div class="banner-matter">
+				<h2>Global SSH Project</h2>
+				<p>Global-SSH webservice, application help connect SSH to computer via p2p network, use hole punching create TCP connect and use for SSH.</p>		
+			 </div>
+			<div class="tv">
+				<img class="img-responsive" src="images/connect.png" alt="">
+			</div>
+				 <div class="clearfix"> </div>
+		</div>
+	</div>
 
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-
-    <title>Global-SSH Project</title>
-  </head>
-
-  <body>
-    <header>
-      <div class="inner">
-        <a href="https://gssh.herokuapp.com">
-        <h1><img src="favicon.png" alt="logo" style="vertical-align:middle">Global-SSH</h1></a>
-        <h2>Connect together</h2>
-        <a href="https://github.com/nthiep/global-ssh" class="button"><small>View project on</small> GitHub</a>
-      </div>
-    </header>
-
-    <div id="content-wrapper">
-      <div class="inner clearfix">
-        <section id="main-content">
-          <h3>
-<a id="welcome-to-global-ssh-developer-pages" class="anchor" href="#welcome-to-global-ssh-developer-pages" aria-hidden="true"><span class="octicon octicon-link"></span></a>Welcome to Global-SSH developer Pages.</h3>
-
-<p>Global-SSH, application help connect SSH to computer via p2p network, use hole punching to create TCP and UDP connection.</p>
-<p>to use Global-SSH:</p>
-
-<pre><code>
-# In global-ssh Directories 
-$ python cl_main.py
-# ---Welcome to Global SSH Client---
-# ..................................
-# global-ssh$ 
-
-# to show all machines online:
-$ global-ssh$ -l
-# 1. machine1 (ab:12:cd:34:ef:56) (me)
-
-# to connect to peer:
-$ global-ssh$ -c {number of peer}
-# global-ssh$ -c 1
-</code></pre>
-
-<h3>
-<a id="about-project" class="anchor" href="#about-project" aria-hidden="true"><span class="octicon octicon-link"></span></a>About project</h3>
-
-<p>This project will build a application tool to connect linux computer behind NAT use hole punching and multi hole punching for symmetric NAT.</p>
-
-<h3>
-<a id="about-hole-punching-with-clone-nat" class="anchor" href="#about-hole-punching-with-clone-nat" aria-hidden="true"><span class="octicon octicon-link"></span></a>About hole punching</h3>
-
-<p><img src="http://www.brynosaurus.com/pub/net/p2pnat/img6.png" alt="hole punching"></p>
-
-<p>Hole punching assumes that the two clients, A and B, already have active TCP sessions with a rendezvous server S. When a client registers with S, the server records two endpoints for that client: the (IP address, port) pair that the client believes itself to be using to talk with S, and the (IP address, port) pair that the server observes the client to be using to talk with it.</p>
-
-<p>view more at <a href="http://www.brynosaurus.com/pub/net/p2pnat/">http://www.brynosaurus.com/pub/net/p2pnat/</a></p>
-
-<h3>
-<a id="authors" class="anchor" href="#authors" aria-hidden="true"><span class="octicon octicon-link"></span></a>Authors</h3>
-
-<p>My team are <a href="https://github.com/nthiep" target="_blank" >Thanh Hiep Nguyen</a> and <a href="https://github.com/" target="_blank" >Huu Dinh Nguyen.</a></p>
-<p><a href="http://iuh.edu.vn" target="_blank" >Industrial University of Ho Chi Minh City - IUH.</a></p>
-<p>App online at: <a href="https://gssh.herokuapp.com" target="_blank" >https://gssh.herokuapp.com</a></p>
-<p>Socket server at: <a href="https://gssh.koding.io" target="_blank" >https://gssh.koding.io</a></p>
-<h3>
-<a id="support-or-contact" class="anchor" href="#support-or-contact" aria-hidden="true"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
-
-<p>Having trouble with app? Check out the documentation at:</p>
-
-<p><a href="http://github.com/nthiep/global-ssh">http://github.com/nthiep/global-ssh</a></p>
-
-<p>or contact <a href="mailto:hiep.iuh@gmail.com">hiep.iuh@gmail.com</a> and we’ll help you sort it out.</p>
-        </section>
-
-        <aside id="sidebar">
-          <a href="https://gssh.herokuapp.com" target="_blank" class="button">
-            <small>App page</small>
-            on heroku
-          </a>
-          <a href="https://github.com/nthiep/global-ssh/zipball/master" class="button">
-            <small>Download</small>
-            .zip file
-          </a>
-          <a href="https://github.com/nthiep/global-ssh/tarball/master" class="button">
-            <small>Download</small>
-            .tar.gz file
-          </a>
-
-          <p class="repo-owner"><a href="https://github.com/nthiep/global-ssh"></a> is maintained by <a href="https://github.com/nthiep">nthiep</a>.</p>
-
-          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
-        </aside>
-      </div>
-    </div>
-
-  
-  </body>
+			<div class="footer" >
+			<div class="footer-bottom">
+				<ul class="social">
+					<li><a href="#"><i> </i></a></li>						
+					<li><a href="#"><i class="facebook"> </i></a></li>
+					<li><a href="#"><i class="html"> </i></a></li>
+					<li><a href="#"><i class="dot"> </i></a></li>
+				</ul>
+				<p class="footer-class">2015 © global-ssh Template by  <a href="http://w3layouts.com/" target="_blank">w3layouts</a></p>
+				<div class="clearfix"></div>
+			</div>						
+		</div>
+	</div>
+</body>
 </html>
