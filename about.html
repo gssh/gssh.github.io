@@ -21,10 +21,10 @@
   <body>
     <header>
       <div class="inner">
-        <a href="https://gssh.herokuapp.com">
+        <a target="_blank" href="https://nthiep.name.vn/">
         <h1><img src="favicon.png" alt="logo" style="vertical-align:middle">Global-SSH</h1></a>
         <h2>Connect ssh in the internet</h2>
-        <a href="https://github.com/nthiep/global-ssh" class="button"><small>View project on</small> GitHub</a>
+        <a href="https://github.com/nthiep/global-ssh" target="_blank" class="button"><small>View project on</small> GitHub</a>
       </div>
     </header>
 
@@ -35,34 +35,63 @@
 <a id="welcome-to-global-ssh-developer-pages" class="anchor" href="#welcome-to-global-ssh-developer-pages" aria-hidden="true"><span class="octicon octicon-link"></span></a>Global-SSH developer Pages.</h3>
 
 <p>Global-SSH, application help connect SSH to computer via p2p network, use hole punching to create TCP and UDP connection.</p>
-<p>How use Global-SSH:</p>
-
+<h3>
+<a id="about-project" class="anchor" href="#about-project" aria-hidden="true"><span class="octicon octicon-link"></span></a>How use Global-SSH</h3>
 <pre><code>
-# connect to machine
-# $gsh [user@]hostname
+connect to machine:
+<!-- highlight:-d language:console -->
+  $gosh [user@]hostname
+  hostname can use MAC address
+option:
+<!-- highlight:-d language:console -->
+  Usage: gosh [options] [user@][hostname]
 
-# show machines:
-$ gsh [-l]
+  Global SSH help connect SSH behind NAT
 
-# connect to other service
-$ gsh hostname --port {port}
-# this will return local port
-# to connect use:
-$ {service} [option] -p {port}
+  Options:
+    --version             show program's version number and exit
+    -h, --help            show this help message and exit
+
+  Network:
+    -j, --join          Join a Domain
+    -r, --register      Create new Domain
+    -g *, --group=*     Join a Workgroup
+    -c *, --create=*    [workgroup] create a Workgroup
+    -d *, --delete=*    [workgroup] delete Workgroup
+    -l, --logout        logout Domain or Workgroup
+
+  Connect:
+    -D *, --bind=*      -D [bindport:]destport
+    -L *, --tunnel=*    -L port:host:port
+    -p *, --port=*      [user@]hostname -p port
+    -i *, --identity=*  [user@]hostname -i identity_file
+    -v, --verbose       [user@]hostname -v debugging mode
+
+  Infomation:
+    -I, --info          show infomation of machine
+    -m *, --mac=*       -I -m hostname
+    -n, --nat           check nat type
+
 </code></pre>
-
-<p>How to install:</p>
+<h3>
+<a id="about-project" class="anchor" href="#about-project" aria-hidden="true"><span class="octicon octicon-link"></span></a>How to install</h3>
 <pre><code>
-# use git to clone gsh
-$ git clone https://github.com/nthiep/global-ssh.git
-# or download zip/tar.gz file
-# extract file
+install gosh from pypi:
+<!-- highlight:-d language:console -->
+  $ sudo pip install gosh
 
-# run setup tool
-$ sudo python setup.py install
+Clone the repo global-sh:
+<!-- highlight:-d language:console -->
+  $ git clone https://github.com/nthiep/global-ssh.git
+download zip/tar.gz file then extract file.
 
-# check service is running
-$ sudo service gshd status
+run setup tool:
+<!-- highlight:-d language:console -->
+  $ sudo python setup.py install
+
+check service is running:
+<!-- highlight:-d language:console -->
+  $ sudo service goshd status
 </code></pre>
 
 <h3>
@@ -75,8 +104,14 @@ $ sudo service gshd status
 
 <p>My team are <a href="https://github.com/nthiep" target="_blank" >Thanh Hiep Nguyen</a> and <a href="https://github.com/" target="_blank" >Huu Dinh Nguyen.</a></p>
 <p><a href="http://iuh.edu.vn" target="_blank" >Industrial University of Ho Chi Minh City - IUH.</a></p>
-<p>App online at: <a href="https://gssh.herokuapp.com" target="_blank" >https://gssh.herokuapp.com</a></p>
-<p>Socket server at: <a href="https://gssh.koding.io" target="_blank" >https://gssh.koding.io</a></p>
+<h3>
+<a id="authors" class="anchor" href="#authors" aria-hidden="true"><span class="octicon octicon-link"></span></a>App online at</h3>
+<p><a href="https://nthiep.name.vn/" target="_blank" >https://nthiep.name.vn/</a></p>
+<h3>
+<a id="authors" class="anchor" href="#authors" aria-hidden="true"><span class="octicon octicon-link"></span></a>Server at</h3>
+<p> <a href="http://aws.amazon.com/ec2/" target="_blank" >http://aws.amazon.com/ec2/</a></p>
+<p> <a href="https://cloud.digitalocean.com/droplets" target="_blank" >https://digitalocean.com/</a></p>
+
 <h3>
 <a id="support-or-contact" class="anchor" href="#support-or-contact" aria-hidden="true"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
 
@@ -84,13 +119,14 @@ $ sudo service gshd status
 
 <p><a href="http://github.com/nthiep/global-ssh">http://github.com/nthiep/global-ssh</a></p>
 
-<p>or contact <a href="mailto:hiep.iuh@gmail.com">hiep.iuh@gmail.com</a> and we’ll help you sort it out.</p>
+<p>Contact <a href="mailto:hiep.iuh@gmail.com">hiep.iuh@gmail.com</a> and we’ll help you sort it out.</p>
         </section>
 
         <aside id="sidebar">
-          <a href="https://gssh.herokuapp.com" target="_blank" class="button">
-            <small>App page</small>
-            on heroku
+          <a href="https://github.com/nthiep/global-ssh-server" target="_blank" class="button"><small>View project server on</small> GitHub</a>
+          <a href="https://nthiep.name.vn/" target="_blank" class="button">
+            <small>project</small>
+            App Page
           </a>
           <a href="https://github.com/nthiep/global-ssh/zipball/master" class="button">
             <small>Download</small>
